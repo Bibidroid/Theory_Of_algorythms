@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
-    Created on : 6 апр. 2021 г., 19:58:04
-    Author     : User
+    Created on : 6 апр. 2021 г., 22:55:48
+    Author     : ProBook
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,19 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TA Start</title>
+        <title>Labaratorki</title>
     </head>
     <body>
-        <h1>My TA labs</h1>
-        <p>This is a paragraph</p>
-
-        <form ation="lab1.jsp">           
-
-            <input type="submit" value="Lab1">
-        </form>
-
-        <p><a href="lab1.isp">Alternative variant</a></p>
-
-
+        <h1>Labaratorki</h1>
+        <br>
+        <a href="lab1.jsp">Laba1</a>
+        <br>
+        <a href="lab2.jsp">Laba2</a>
+        <br>
+        <a href="lab3.jsp">Laba3</a>
+        <br>
+        <a href="lab4.jsp">Laba4</a>
+        <br>
+        
     </body>
 </html>
