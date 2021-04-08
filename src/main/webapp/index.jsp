@@ -12,6 +12,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>My TA labs</h1>
+        <p>This is a paragraph</p>
+        
+        <form ation="lab1.isp">           
+            
+            <input type="submit"value="Lab1">
+        </form>>
+        
+        <p><a href="lab1.isp">Alternative variant</a></p>
+        
+        
     </body>
 </html>
