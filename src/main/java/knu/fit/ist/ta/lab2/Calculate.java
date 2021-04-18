@@ -13,8 +13,8 @@ public class Calculate {
     
     
     public static float lab2equation(float x){
-    
-    return (float) Math.log(x);
+    float a = 3, b = 3, c = - 8, d = 3; 
+    return (float) Math.log(d*x) /((a*x*x)+(b*x)+c) ;
     }
     
 }

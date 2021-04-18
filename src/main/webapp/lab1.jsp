@@ -1,9 +1,3 @@
-<%-- 
-    Document   : lab1
-    Created on : 7 апр. 2021 г., 1:24:39
-    Author     : ProBook
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" import="knu.fit.ist.ta.FirstJava"%>
 <!DOCTYPE html>
 <html>
