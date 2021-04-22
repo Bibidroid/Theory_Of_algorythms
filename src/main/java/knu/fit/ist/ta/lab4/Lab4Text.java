@@ -108,15 +108,6 @@ public class Lab4Text {
         return count;
     }
 
-    public int FirstSeveWordsWithThreeLetters() {
-        int count = 0;
-        String str1 = new String();
-        String[] str = Text.split(" ");
-        for (int i = 0; i < str.length; i++) {
-            if (str[i].chars()) {
-
-            }
-        }
-    }
+    
 
 }
