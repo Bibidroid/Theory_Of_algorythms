@@ -5,6 +5,8 @@
  */
 package knu.fit.ist.ta.lab4;
 
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.*;
 
 /**
@@ -18,7 +20,7 @@ public class Lab4Text {
     private int CountOfUniqueWords;
 
     public Lab4Text() {
-        CountOfWords = 0;
+        CountOfWords = 1;
         CountOfUniqueWords = 0;
         Text = "History\n"
                 + "The main concept of a network of smart devices was discussed as early as 1982, with a modified Coca-Cola vending machine at Carnegie Mellon University becoming the first Internet-connected appliance, able to report its inventory and whether newly loaded drinks were cold or not. Mark Weiser's 1991 paper on ubiquitous computing, \"The Computer of the 21st Century\", as well as academic venues such as UbiComp and PerCom produced the contemporary vision of the IOT. In 1994, Reza Raji described the concept in IEEE Spectrum as \"[moving] small packets of data to a large set of nodes, so as to integrate and automate everything from home appliances to entire factories\". Between 1993 and 1997, several companies proposed solutions like Microsoft's at Work or Novell's NEST. The field gained momentum when Bill Joy envisioned device-to-device communication as a part of his \"Six Webs\" framework, presented at the World Economic Forum at Davos in 1999. \n"
@@ -57,4 +59,64 @@ public class Lab4Text {
     public int GetUniqueWords() {
         return CountOfUniqueWords;
     }
+
+    public Map<String, Long> sortByValue(final Map<String, Long> wordCounts) {
+
+        return wordCounts.entrySet()
+                .stream()
+                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+    }
+
+    public TreeMap<String, Long> FirstThreeUniqueWords() {
+        Map<String, Long> count = Arrays.stream(Text.split(" ")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        count = sortByValue(count);
+        TreeMap<String, Long> myNewMap = count.entrySet().stream()
+                .limit(3)
+                .collect(TreeMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
+        return myNewMap;
+    }
+
+    public int WordsWithoutZ() {                                                               //h i s t o r y  
+        int count = 0;                                                                          //
+        String[] str = Text.split(" ");
+        for (int i = 0; i < str.length; i++) {
+            Boolean flag = false;
+            for (int j = 0; j < str[i].length(); j++) {
+                if (str[i].charAt(j) == 'z') {
+                    flag = !flag;
+                }
+            }
+            if (!flag) {
+                count++;
+            }
+
+        }
+        return count;
+    }
+
+    public int WordsWithTwoLetters() {
+        int count = 0;
+        String str1 = new String();
+        String[] str = Text.split(" ");
+        for (int i = 0; i < str.length; i++) {
+            if (str[i].chars().distinct().count() == 2) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int FirstSeveWordsWithThreeLetters() {
+        int count = 0;
+        String str1 = new String();
+        String[] str = Text.split(" ");
+        for (int i = 0; i < str.length; i++) {
+            if (str[i].chars()) {
+
+            }
+        }
+    }
+
 }
