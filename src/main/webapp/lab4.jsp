@@ -19,7 +19,13 @@
 
         <p><%= "3) Number of unique words : " + lab4.GetUniqueWords() + '\n'%></p>  
 
+        <p><%= "4) First three unique words : " + lab4.FirstThreeUniqueWords() + '\n'%></p>
 
+        <p><%= "5) Words without Z : " + lab4.WordsWithoutZ() + '\n'%></p>
+
+        <p><%= "6) Words with two letters : " + lab4.WordsWithTwoLetters() + '\n'%></p>
+
+        <p><%= "7) Most popular sequences : " + lab4.MostPopularSequences(7, 3) + '\n'%></p>
 
         <p></p>
         <p></p>

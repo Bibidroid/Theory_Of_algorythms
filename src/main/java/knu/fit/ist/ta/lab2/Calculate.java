@@ -5,16 +5,27 @@
  */
 package knu.fit.ist.ta.lab2;
 
+import java.math.RoundingMode;
+import java.math.BigDecimal;
+
 /**
  *
  * @author 38068
  */
 public class Calculate {
-    
-    
-    public static float lab2equation(float x){
-    float a = 3, b = 3, c = - 8, d = 3; 
-    return (float) Math.log(d*x) /((a*x*x)+(b*x)+c) ;
+
+    public static double lab2equation(double x) {
+        if (x == 0) {
+            return 0;
+        }
+        double y;
+        double a = 3, b = 3, c = - 8, d = 3;
+        
+        y = (double) Math.log(d * x) / ((a * x * x) + (b * x) + c);
+        y = BigDecimal.valueOf(y)
+                .setScale(3, RoundingMode.HALF_UP)
+                .doubleValue();
+        return y;
     }
-    
+
 }

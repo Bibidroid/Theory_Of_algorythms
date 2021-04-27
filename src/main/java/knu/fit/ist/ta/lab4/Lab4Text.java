@@ -8,6 +8,7 @@ package knu.fit.ist.ta.lab4;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  *
@@ -31,6 +32,15 @@ public class Lab4Text {
                 + "A smart home or automated home could be based on a platform or hubs that control smart devices and appliances. For instance, using Apple's HomeKit, manufacturers can have their home products and accessories controlled by an application in iOS devices such as the iPhone and the Apple Watch. This could be a dedicated app or iOS native applications such as Siri. This can be demonstrated in the case of Lenovo's Smart Home Essentials, which is a line of smart home devices that are controlled through Apple's Home app or Siri without the need for a Wi-Fi bridge. There are also dedicated smart home hubs that are offered as standalone platforms to connect different smart home products and these include the Amazon Echo, Google Home, Apple's HomePod, and Samsung's SmartThings Hub. In addition to the commercial systems, there are many non-proprietary, open source ecosystems; including Home Assistant, OpenHAB and Domoticz. \n";
         WorkWithText();
         UniqueWords();
+        Text = cleanString(Text);
+    }
+
+    public String cleanString(String input) {
+        input = input.toLowerCase();
+        input = input.replaceAll("-{2,}", "");
+        input = input.replaceAll("-{2,}", " ");
+        input = input.replaceAll("[^\\w -]", "").trim();
+        return input;
     }
 
     public void WorkWithText() {
@@ -108,6 +118,29 @@ public class Lab4Text {
         return count;
     }
 
-    
+    public String MostPopularSequences(int number, int length) {
+        String[] words = Text.split(" ");
+        Map<String, Integer> dictionary = new HashMap<String, Integer>();
+        int currentWordLength;
+        String sequence;
+
+        for (int i = 0; i < words.length; i++) {
+            currentWordLength = words[i].length();
+            for (int j = 0; j < currentWordLength - length; j++) {
+                sequence = words[i].substring(j, j + length);
+                if (dictionary.containsKey(sequence)) {
+                    dictionary.put(sequence, dictionary.get(sequence) + 1);
+                } else {
+                    dictionary.put(sequence, 1);
+                }
+            }
+        }
+        List<Entry<String, Integer>> list = new ArrayList<>(dictionary.entrySet());
+        list.sort(Entry.comparingByValue());
+        Collections.reverse(list);
+        Object[] sortedArray = list.toArray();
+
+        return Arrays.toString(Arrays.copyOfRange(sortedArray, 0, number));
+    }
 
 }
