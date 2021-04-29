@@ -16,19 +16,19 @@ public class Lab3Arr {
 
     public Lab3Arr() {
         min = 0f;
-         max = 0f;
+        max = 0f;
     }
-    
+
     public String ShowArray() {
         double[] array = new double[30];
         String str = "";
-        
+
         for (int i = 0; i < array.length; i++) {
-            array[i] = ((int)(Math.random()*80))/10.;
+            array[i] = ((int) (Math.random() * 80)) / 10.;
             str += array[i] + " | ";
         }
-        
-        min = array[0];   
+
+        min = array[0];
         max = array[0];
 
         for (int i = 0; i < array.length; i++) {
@@ -39,22 +39,19 @@ public class Lab3Arr {
                 max = array[i];
             }
         }
-        
+
         return str;
     }
-    
-    public double GetMax()
-    {
+
+    public double GetMax() {
         return max;
     }
-    
-    public double GetMin()
-    {
+
+    public double GetMin() {
         return min;
     }
-    
-    public double CalculateMaxMin()
-    {
+
+    public double CalculateMaxMin() {
         return max - min;
     }
 }

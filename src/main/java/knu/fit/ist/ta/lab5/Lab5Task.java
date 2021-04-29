@@ -16,7 +16,7 @@ import java.util.Comparator;
 
 public class Lab5Task {
 
-    private final int numberOfItems = 20;
+    private final int numberOfItems = 25720;
     private static LinkedList<Entity> list;
     private String Text
             = "History\n"
