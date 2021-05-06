@@ -19,9 +19,10 @@ public class Lab4Text {
     private String Text;
     private int CountOfWords;
     private int CountOfUniqueWords;
+    private String[] words;
 
     public Lab4Text() {
-        CountOfWords = 1;
+        CountOfWords = 0;
         CountOfUniqueWords = 0;
         Text = "History\n"
                 + "The main concept of a network of smart devices was discussed as early as 1982, with a modified Coca-Cola vending machine at Carnegie Mellon University becoming the first Internet-connected appliance, able to report its inventory and whether newly loaded drinks were cold or not. Mark Weiser's 1991 paper on ubiquitous computing, \"The Computer of the 21st Century\", as well as academic venues such as UbiComp and PerCom produced the contemporary vision of the IOT. In 1994, Reza Raji described the concept in IEEE Spectrum as \"[moving] small packets of data to a large set of nodes, so as to integrate and automate everything from home appliances to entire factories\". Between 1993 and 1997, several companies proposed solutions like Microsoft's at Work or Novell's NEST. The field gained momentum when Bill Joy envisioned device-to-device communication as a part of his \"Six Webs\" framework, presented at the World Economic Forum at Davos in 1999. \n"
@@ -30,9 +31,26 @@ public class Lab4Text {
                 + "Smart home\n"
                 + "IoT devices are a part of the larger concept of home automation, which can include lighting, heating and air conditioning, media and security systems and camera systems. Long-term benefits could include energy savings by automatically ensuring lights and electronics are turned off or by making the residents in the home aware of usage. \n"
                 + "A smart home or automated home could be based on a platform or hubs that control smart devices and appliances. For instance, using Apple's HomeKit, manufacturers can have their home products and accessories controlled by an application in iOS devices such as the iPhone and the Apple Watch. This could be a dedicated app or iOS native applications such as Siri. This can be demonstrated in the case of Lenovo's Smart Home Essentials, which is a line of smart home devices that are controlled through Apple's Home app or Siri without the need for a Wi-Fi bridge. There are also dedicated smart home hubs that are offered as standalone platforms to connect different smart home products and these include the Amazon Echo, Google Home, Apple's HomePod, and Samsung's SmartThings Hub. In addition to the commercial systems, there are many non-proprietary, open source ecosystems; including Home Assistant, OpenHAB and Domoticz. \n";
+        Text = cleanString(Text);
+        words = Text.split(" ");
         WorkWithText();
         UniqueWords();
+
+    }
+
+    public Lab4Text(String inputText) {
+        Text = inputText;
+        CountOfWords = 0;
+        CountOfUniqueWords = 0;
+        if (Text != "") {
+            words = Text.split(" ");
+        } else {
+            words = new String[0];
+        }
         Text = cleanString(Text);
+        WorkWithText();
+        UniqueWords();
+
     }
 
     public String cleanString(String input) {
@@ -49,11 +67,10 @@ public class Lab4Text {
                 CountOfWords++;
             }
         }
-
     }
 
     public void UniqueWords() {
-        List<String> stringsDuplicates = Arrays.asList(Text.split(" "));
+        List<String> stringsDuplicates = Arrays.asList(words);
         Set<String> cities = new HashSet<>(stringsDuplicates);
         CountOfUniqueWords = cities.size();
     }
@@ -70,31 +87,29 @@ public class Lab4Text {
         return CountOfUniqueWords;
     }
 
-    public Map<String, Long> sortByValue(final Map<String, Long> wordCounts) {
-
-        return wordCounts.entrySet()
-                .stream()
-                .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+    public String GetFirstNMostPopularWords(int n) {
+        Map<String, Integer> dictionary = new HashMap<String, Integer>();
+        for (int i = 0; i < words.length; i++) {
+            if (dictionary.containsKey(words[i])) {
+                dictionary.put(words[i], dictionary.get(words[i]) + 1);
+            } else {
+                dictionary.put(words[i], 1);
+            }
+        }
+        List<Entry<String, Integer>> list = new ArrayList<>(dictionary.entrySet());
+        list.sort(Entry.comparingByValue());
+        Collections.reverse(list);
+        Object[] sortedArray = list.toArray();
+        return Arrays.toString(Arrays.copyOfRange(sortedArray, 0, n));
     }
 
-    public TreeMap<String, Long> FirstThreeUniqueWords() {
-        Map<String, Long> count = Arrays.stream(Text.split(" ")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    public int WordsWithoutZ(char letter) {
+        int count = 0;
 
-        count = sortByValue(count);
-        TreeMap<String, Long> myNewMap = count.entrySet().stream()
-                .limit(3)
-                .collect(TreeMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
-        return myNewMap;
-    }
-
-    public int WordsWithoutZ() {                                                               //h i s t o r y  
-        int count = 0;                                                                          //
-        String[] str = Text.split(" ");
-        for (int i = 0; i < str.length; i++) {
+        for (int i = 0; i < words.length; i++) {
             Boolean flag = false;
-            for (int j = 0; j < str[i].length(); j++) {
-                if (str[i].charAt(j) == 'z') {
+            for (int j = 0; j < words[i].length(); j++) {
+                if (words[i].charAt(j) == letter) {
                     flag = !flag;
                 }
             }

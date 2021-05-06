@@ -24,7 +24,6 @@ class TaApplicationTests {
         assertTrue(Float.MAX_VALUE != calculator.lab2equation(2));
         assertEquals(-0.071, calculator.lab2equation(0.5));
         assertEquals(0.179, calculator.lab2equation(2));
-        assertTrue(0 == calculator.lab2equation(0));
     }
 
     @Test
@@ -55,12 +54,24 @@ class TaApplicationTests {
         text.WorkWithText();
         NumberWords = text.GetWords();
         NumberUniqueWords = text.GetUniqueWords();
-        WordsWithoutZ = text.WordsWithoutZ();
+        WordsWithoutZ = text.WordsWithoutZ('z');
         WordsWithTwoLetter = text.WordsWithTwoLetters();
 
         assertTrue(NumberWords > 0);
         assertTrue(NumberUniqueWords > 0);
         assertFalse(WordsWithoutZ < 452);
         assertFalse(WordsWithTwoLetter < 86);
+
+        knu.fit.ist.ta.lab4.Lab4Text text2 = new knu.fit.ist.ta.lab4.Lab4Text("");
+
+        assertFalse(text2.GetWords() > 0);
+        assertFalse(text2.GetUniqueWords() > 0);
+        assertFalse(text2.WordsWithoutZ('z') > 0);
+        assertFalse(text2.WordsWithTwoLetters() > 0);
+
+        assertEquals(text2.GetWords(), 0);
+        assertEquals(text2.GetUniqueWords(), 0);
+        assertEquals(text2.WordsWithoutZ('z'), 0);
+        assertEquals(text2.WordsWithTwoLetters(), 0);
     }
 }
