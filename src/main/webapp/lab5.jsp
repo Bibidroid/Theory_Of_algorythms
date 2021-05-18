@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" import="knu.fit.ist.ta.lab5.Lab5Task"%>
+<%@ page import = "knu.fit.ist.ta.lab5.EntityComparatorCount"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,11 +21,13 @@
             </form> 
         </div>
 
-        <p><%= "1) Entities : " + lab5.ShowEntities() + '\n'%></p>
+        <p><%= "1) Entities : " + lab5.ShowEntities2() + '\n'%></p>
 
 
+        <p><%= "2) Sort entities : " + lab5.ShowEntities(new EntityComparatorCount()) + '\n'%></p>
 
-
+        <% lab5.SortByLongField();%>
+        <p><%= "2) Sort Entities : " + lab5.ShowEntities2() + '\n'%></p>
 
 
         <p></p>

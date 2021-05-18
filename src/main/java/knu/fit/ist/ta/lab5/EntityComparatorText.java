@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package knu.fit.ist.ta.lab4;
+package knu.fit.ist.ta.lab5;
 
 import java.util.Comparator;
 
-
-public class EntityComparatorCount implements Comparator<Entity> {
+/**
+ *
+ * @author User
+ */
+public class EntityComparatorText implements Comparator<Entity> {
 
     @Override
     public int compare(Entity firstEntity, Entity secondEntity) {
-
-        return Long.compare(firstEntity.getCount(), secondEntity.getCount());
+        return firstEntity.getText().compareTo(secondEntity.getText());
     }
 
 }

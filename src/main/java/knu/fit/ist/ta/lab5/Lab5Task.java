@@ -8,15 +8,12 @@ package knu.fit.ist.ta.lab5;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import knu.fit.ist.ta.lab3.Lab3Arr;
-import knu.fit.ist.ta.lab4.Entity;
-import knu.fit.ist.ta.lab4.EntityComparatorCount;
-import knu.fit.ist.ta.lab4.EntityComparatorText;
 import java.util.Random;
 import java.util.Comparator;
 
 public class Lab5Task {
 
-    private final int numberOfItems = 25720;
+    private final int numberOfItems = 20;
     private static LinkedList<Entity> list;
     private String Text
             = "History\n"
@@ -31,12 +28,12 @@ public class Lab5Task {
         list = new LinkedList<Entity>();
         Random rand = new Random();
         for (int i = 1; i <= numberOfItems; i++) {
-            list.add(new Entity("Entity №" + i, rand.nextInt(30000)));
+            list.add(new Entity("Entity №" + i, new Long(rand.nextInt(30000))));
         }
 
     }
-
-    public String ShowEntities() {
+    
+    public String ShowEntities2() {
         String text = new String();
 
         for (Entity e : list) {
@@ -45,28 +42,27 @@ public class Lab5Task {
         return text;
     }
 
-    public void SortList(Comparator<Entity> comporator) {
-        Entity s; //temp indexes
-        int t;
-        LinkedList<Entity> result = new LinkedList< Entity>();
-        result.addAll(list);
+    public String ShowEntities(Comparator<Entity> comparator) {
+        String text = new String();
 
-        int n = result.size() - 1;
-        int k = 0;
-        Entity entity = new Entity();
+        for (Entity e : list) {
+            text += "   | " + e.getText() + " &nbsp;&nbsp;&nbsp;:   " + e.getCount() + " |   <br>";
+        }
+//        return text;
+        return comparator.compare(list.get(0), list.get(1))+" "+comparator.compare(list.get(1), list.get(2));
+    }
 
-        while (k != n) {
-            t = k + 1;
-            entity = result.get(t);
-
-            while (t > 0 && comporator.compare(result.get(t), result.get(t - 1)) > 1) {
-                s = result.get(t);
-                result.set(t, result.get(t - 1));
-                result.set(t - 1, s);
-                t--;
+    public void SortList(Comparator<Entity> comparator) {
+        int listLength = list.size();
+        Entity key;
+        int j;
+        for (int i = 1; i < listLength; ++i) {
+            key = list.get(i);
+            j = i - 1;
+            while (j >= 0 && comparator.compare(list.get(j), key) > 0) {
+                list.set(j + 1, list.get(j--));
             }
-
-            k++;
+            list.set(j + 1, key);
         }
     }
 

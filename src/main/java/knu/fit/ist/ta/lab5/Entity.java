@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package knu.fit.ist.ta.lab4;
+package knu.fit.ist.ta.lab5;
 
 import java.util.Objects;
 
@@ -11,9 +11,9 @@ import java.util.Objects;
 public class Entity {
 
     private String text;
-    private long count;
+    private Long count;
 
-    public Entity(String text, long count) {
+    public Entity(String text, Long count) {
         this.text = text;
         this.count = count;
     }
@@ -29,7 +29,7 @@ public class Entity {
         this.text = text;
     }
 
-    public long getCount() {
+    public Long getCount() {
         return count;
     }
 
