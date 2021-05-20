@@ -75,14 +75,5 @@ class TaApplicationTests {
         assertEquals(text2.WordsWithTwoLetters(), 0);
     }
 
-//    @Test
-//    void Laba5Test() {
-//        knu.fit.ist.ta.lab5.Lab5Task lab5 = new knu.fit.ist.ta.lab5.Lab5Task();
-//
-//        
-//        double max;
-//        double min;
-//        lab5.ShowEntities();
-//        
-//    }
+    
 }

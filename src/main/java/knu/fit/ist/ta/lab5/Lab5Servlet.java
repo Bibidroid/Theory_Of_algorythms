@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author User
- */
+
 @WebServlet(name = "Lab5Servlet", urlPatterns = {"/lab5"})
 public class Lab5Servlet extends HttpServlet {
 
