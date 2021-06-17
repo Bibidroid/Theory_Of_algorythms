@@ -1,8 +1,11 @@
 package knu.fit.ist.ta;
 
+import knu.fit.ist.ta.exam.Calculator;
+import knu.fit.ist.ta.exam.FormulaResults;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
 
 @SpringBootTest
 class TaApplicationTests {
@@ -17,14 +20,14 @@ class TaApplicationTests {
         assertEquals(0.02f, 0.025f, 0.01f);
     }
 
-    @Test
-    void Laba2Test() {
-        knu.fit.ist.ta.lab2.Calculate calculator = new knu.fit.ist.ta.lab2.Calculate();
-
-        assertTrue(Float.MAX_VALUE != calculator.lab2equation(2));
-        assertEquals(-0.071, calculator.lab2equation(0.5));
-        assertEquals(0.179, calculator.lab2equation(2));
-    }
+//    @Test
+//    void Laba2Test() {
+//        knu.fit.ist.ta.lab2.Calculate calculator = new knu.fit.ist.ta.lab2.Calculate();
+//
+//        assertTrue(Float.MAX_VALUE != calculator.lab2equation(2));
+//        assertEquals(-0.071, calculator.lab2equation(0.5));
+//        assertEquals(0.179, calculator.lab2equation(2));
+//    }
 
     @Test
     void Laba3Test() {
@@ -74,6 +77,23 @@ class TaApplicationTests {
         assertEquals(text2.WordsWithoutZ('z'), 0);
         assertEquals(text2.WordsWithTwoLetters(), 0);
     }
+    
+    @Test
+    void testFormula()
+    {
+        assertEquals(4, Calculator.Calculate(2));
+    }
+    
+    @Test
+    void testFormulaWithManyArgs()
+    {
+        FormulaResults fr = new FormulaResults();
+        double[] args = new double[]{3d, 4d, 5d};
+        fr.SetArgs(args);
+        assertEquals("[9.0, 16.0, 25.0]", fr.Calculate());
+    }
+    
+    
 
     
 }

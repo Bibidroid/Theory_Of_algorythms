@@ -57,6 +57,12 @@
                 <input type="submit" value="Lab8">
             </form> 
         </div>
+        
+        <div>
+            <form action="exam.jsp">  
+                <input type="submit" value="Examen">
+            </form> 
+        </div>
 
 
     </body>
